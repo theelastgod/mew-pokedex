@@ -2,154 +2,183 @@
   // Set this to the mint address when it exists. An empty string stays off the page.
   const CONTRACT = "";
 
+  const clips = [
+    { id: "jungle", title: "Mew", kicker: "Jungle", src: "./assets/videos/jungle.mp4", poster: "./assets/jungle.jpg", aw: 16, ah: 9 },
+    { id: "mirage", title: "Mirage", kicker: "Mirage", src: "./assets/videos/story.mp4", poster: "./assets/story.jpg", aw: 9, ah: 16 },
+    { id: "truck", title: "Empty", kicker: "Truck", src: "./assets/videos/truck.mp4", poster: "./assets/truck.jpg", aw: 16, ah: 9 },
+    { id: "cell", title: "One cell", kicker: "Cell", src: "./assets/videos/degen.mp4", poster: "./assets/degen.jpg", aw: 16, ah: 9 },
+    { id: "island", title: "Faraway", kicker: "Island", src: "./assets/videos/faraway.mp4", poster: "./assets/faraway.jpg", aw: 16, ah: 9 },
+    { id: "card", title: "151", kicker: "Card", src: "./nft/mew.mp4", poster: "./nft/cover.jpg", aw: 1, ah: 1 },
+  ];
+
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const scenes = [...document.querySelectorAll(".scene")];
-  const buttons = [...document.querySelectorAll("[data-go]")];
+  const app = document.getElementById("app");
+  const frame = document.getElementById("frame");
+  const film = document.getElementById("film");
+  const poster = document.getElementById("poster");
+  const play = document.getElementById("play");
+  const toggle = document.getElementById("toggle");
+  const scrub = document.getElementById("scrub");
+  const time = document.getElementById("time");
   const title = document.getElementById("title");
   const kicker = document.getElementById("kicker");
-  const caption = document.getElementById("caption");
-  const holo = document.getElementById("holo");
+  const sheen = document.getElementById("sheen");
+  const wash = document.getElementById("wash");
+  const reels = document.getElementById("reels");
   let index = 0;
-  let lock = false;
-  let downX = null;
+  let scrubbing = false;
 
-  const play = (scene) => {
-    const video = scene.querySelector("video");
-    if (!video || reduce) return;
-    video.muted = true;
-    video.preload = "auto";
-    const mark = () => scene.classList.add("is-playing");
-    if (video.readyState >= 2 && !video.paused) mark();
-    else video.addEventListener("playing", mark, { once: true });
-    video.play().catch(() => {});
+  const fmt = (seconds) => {
+    if (!Number.isFinite(seconds)) return "0:00";
+    const whole = Math.max(0, Math.floor(seconds));
+    return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, "0")}`;
   };
 
-  const show = (next) => {
-    const wrapped = (next + scenes.length) % scenes.length;
-    if (wrapped === index && scenes[index].classList.contains("on")) {
-      play(scenes[index]);
-      return;
-    }
-    index = wrapped;
-    const scene = scenes[index];
-    scenes.forEach((item, i) => {
-      const active = i === index;
-      item.classList.toggle("on", active);
-      const video = item.querySelector("video");
-      if (!video || reduce) return;
-      if (active) play(item);
-      else video.pause();
-    });
-    buttons.forEach((button) => {
-      button.classList.toggle("on", button.dataset.go === scene.dataset.scene);
-    });
-    const nextTitle = scene.dataset.title || "";
-    const nextKicker = scene.dataset.kicker || "";
-    const first = !document.body.dataset.booted;
-    document.body.dataset.booted = "1";
-    if (first || reduce || title.textContent === nextTitle) {
-      title.textContent = nextTitle;
-      kicker.textContent = nextKicker;
-      caption.classList.remove("swap");
-    } else {
-      caption.classList.add("swap");
-      window.setTimeout(() => {
-        title.textContent = nextTitle;
-        kicker.textContent = nextKicker;
-        caption.classList.remove("swap");
-      }, 160);
-    }
-    history.replaceState(null, "", "#" + scene.dataset.scene);
+  const moving = () => film.currentTime > 0.04;
+
+  const mark = (playing) => {
+    app.classList.toggle("is-playing", Boolean(playing) && !film.paused && moving());
   };
 
-  const step = (delta) => {
-    if (lock) return;
-    lock = true;
-    show(index + delta);
-    window.setTimeout(() => {
-      lock = false;
-    }, reduce ? 0 : 760);
+  const start = () => {
+    if (reduce) return Promise.resolve();
+    film.muted = true;
+    const pending = film.play();
+    if (!pending) {
+      mark(true);
+      return Promise.resolve();
+    }
+    return pending.then(() => mark(true)).catch(() => mark(false));
   };
 
-  let coolUntil = 0;
-  window.addEventListener(
-    "wheel",
-    (event) => {
-      const now = performance.now();
-      if (now < coolUntil) {
-        coolUntil = now + 240;
-        return;
-      }
-      if (Math.abs(event.deltaY) < 12) return;
-      coolUntil = now + 760;
-      step(event.deltaY > 0 ? 1 : -1);
-    },
-    { passive: true }
-  );
+  const pause = () => {
+    film.pause();
+    mark(false);
+  };
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      const target = scenes.findIndex((scene) => scene.dataset.scene === button.dataset.go);
-      if (target >= 0) show(target);
-    });
+  const flip = () => {
+    if (film.paused) start();
+    else pause();
+  };
+
+  clips.forEach((clip, i) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.go = clip.id;
+    button.innerHTML = `<img alt="" src="${clip.poster}"><span>${clip.kicker}</span>`;
+    button.addEventListener("click", () => open(i, true));
+    reels.appendChild(button);
   });
 
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowDown" || event.key === "ArrowRight" || event.key === "PageDown") {
-      event.preventDefault();
-      step(1);
-    } else if (event.key === "ArrowUp" || event.key === "ArrowLeft" || event.key === "PageUp") {
-      event.preventDefault();
-      step(-1);
+  const buttons = [...reels.querySelectorAll("button")];
+  const logo = document.querySelector(".mark");
+
+  const open = (next, gesture) => {
+    index = (next + clips.length) % clips.length;
+    const clip = clips[index];
+    title.textContent = clip.title;
+    kicker.textContent = clip.kicker;
+    frame.classList.toggle("is-card", clip.id === "card");
+    frame.style.setProperty("--aw", String(clip.aw));
+    frame.style.setProperty("--ah", String(clip.ah));
+    if (clip.id !== "card") {
+      frame.style.removeProperty("--ry");
+      frame.style.removeProperty("--rx");
+      frame.style.removeProperty("--sx");
     }
+    sheen.hidden = clip.id !== "card";
+    buttons.forEach((button, i) => button.classList.toggle("on", i === index));
+    const active = buttons[index];
+    const rail = reels.getBoundingClientRect();
+    const box = active.getBoundingClientRect();
+    reels.scrollLeft += box.left - rail.left - (rail.width - box.width) / 2;
+    poster.src = clip.poster;
+    film.poster = clip.poster;
+    wash.style.backgroundImage = `url("${clip.poster}")`;
+    app.classList.remove("has-frame", "is-playing");
+    if (film.getAttribute("src") !== clip.src) {
+      film.src = clip.src;
+      film.load();
+    }
+    history.replaceState(null, "", "#" + clip.id);
+    scrub.value = "0";
+    time.textContent = "0:00";
+    if (gesture) start();
+  };
+
+  logo.addEventListener("click", (event) => {
+    event.preventDefault();
+    open(0, true);
   });
 
-  const stage = document.getElementById("stage");
-  stage.addEventListener("pointerdown", (event) => {
-    downX = event.clientX;
+  play.addEventListener("click", (event) => {
+    event.stopPropagation();
+    start();
   });
-  stage.addEventListener("pointerup", (event) => {
-    if (downX == null) return;
-    const delta = event.clientX - downX;
-    downX = null;
-    if (Math.abs(delta) > 56) step(delta < 0 ? 1 : -1);
+  toggle.addEventListener("click", flip);
+  film.addEventListener("click", flip);
+  film.addEventListener("play", () => mark(true));
+  film.addEventListener("pause", () => mark(false));
+
+  scrub.addEventListener("pointerdown", () => {
+    scrubbing = true;
+  });
+  const release = () => {
+    scrubbing = false;
+  };
+  scrub.addEventListener("pointerup", release);
+  scrub.addEventListener("pointercancel", release);
+  scrub.addEventListener("input", () => {
+    if (!Number.isFinite(film.duration) || film.duration === 0) return;
+    film.currentTime = (Number(scrub.value) / 1000) * film.duration;
+    time.textContent = fmt(film.currentTime);
+  });
+  film.addEventListener("timeupdate", () => {
+    if (moving()) {
+      app.classList.add("has-frame");
+      if (!film.paused) app.classList.add("is-playing");
+    }
+    if (!Number.isFinite(film.duration) || film.duration === 0) return;
+    time.textContent = fmt(film.currentTime);
+    if (scrubbing) return;
+    scrub.value = String((film.currentTime / film.duration) * 1000);
+  });
+  film.addEventListener("loadedmetadata", () => {
+    time.textContent = fmt(film.currentTime);
   });
 
-  if (!reduce) {
-    window.addEventListener("pointermove", (event) => {
-      const x = event.clientX / window.innerWidth - 0.5;
-      const y = event.clientY / window.innerHeight - 0.5;
-      const media = scenes[index].querySelector(".media");
-      if (media) media.style.transform = `translate(${x * -22}px, ${y * -14}px) scale(1.06)`;
-      if (scenes[index].dataset.scene === "card" && holo) {
-        holo.style.transform = `rotateY(${x * 18}deg) rotateX(${-y * 12}deg)`;
-        holo.style.setProperty("--sx", String(x * 80));
-      }
-    });
-  }
+  frame.addEventListener("pointermove", (event) => {
+    if (!frame.classList.contains("is-card")) return;
+    const box = frame.getBoundingClientRect();
+    const x = (event.clientX - box.left) / box.width - 0.5;
+    const y = (event.clientY - box.top) / box.height - 0.5;
+    frame.style.setProperty("--ry", `${x * 16}deg`);
+    frame.style.setProperty("--rx", `${-y * 10}deg`);
+    frame.style.setProperty("--sx", String(x * 70));
+  });
 
   const hash = location.hash.replace("#", "");
-  const start = scenes.findIndex((scene) => scene.dataset.scene === hash);
-  show(start >= 0 ? start : 0);
+  const startAt = Math.max(0, clips.findIndex((clip) => clip.id === hash));
+  open(startAt, false);
+  if (!reduce) start();
 
   const row = document.getElementById("ca");
-  const button = document.getElementById("ca-copy");
+  const copy = document.getElementById("ca-copy");
   const address = CONTRACT.trim();
-  if (!row || !button || !address) return;
+  if (!row || !copy || !address) return;
   row.hidden = false;
-  button.dataset.copy = address;
-  button.textContent = address;
-  button.addEventListener("click", async () => {
+  copy.dataset.copy = address;
+  copy.textContent = address;
+  copy.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(address);
-      const previous = button.textContent;
-      button.textContent = "Copied";
+      const previous = copy.textContent;
+      copy.textContent = "Copied";
       window.setTimeout(() => {
-        button.textContent = previous;
+        copy.textContent = previous;
       }, 1200);
     } catch {
-      button.textContent = "Copy failed";
+      copy.textContent = "Copy failed";
     }
   });
 })();

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Mew</title>
     <meta name="description" content="Mew. No. 151. The truck was empty." />
     <meta name="theme-color" content="#07060a" />
@@ -21,114 +21,70 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="stage" id="stage">
-      <article class="scene on" data-scene="jungle" data-title="Mew" data-kicker="No. 151">
-        <div class="media">
-          <img class="still" src="./assets/jungle.jpg" alt="Mew above a river in a bright rainforest" />
-          <video muted loop playsinline preload="auto" poster="./assets/jungle.jpg">
-            <source src="./assets/videos/jungle.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div class="veil"></div>
-      </article>
+    <div class="wash" id="wash"></div>
+    <div class="app" id="app">
+      <header>
+        <a class="mark" href="#jungle" data-go="jungle" aria-label="Play the jungle clip">
+          <img src="./assets/token-logo.jpg" alt="" width="36" height="36" />
+        </a>
+        <p class="name">
+          <span id="title">Mew</span>
+          <small id="kicker">Jungle</small>
+        </p>
+        <a class="xlink" href="https://x.com/mew_on_sol" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+            />
+          </svg>
+          <span>@mew_on_sol</span>
+        </a>
+      </header>
 
-      <article class="scene" data-scene="mirage" data-title="Mirage" data-kicker="Seen rarely">
-        <div class="media">
-          <img class="still" src="./assets/story.jpg" alt="Mew in mist, seen by the pure of heart" />
-          <video muted loop playsinline preload="none" poster="./assets/story.jpg">
-            <source src="./assets/videos/story.mp4" type="video/mp4" />
-          </video>
+      <div class="cluster">
+      <div class="stage">
+        <div class="frame" id="frame">
+          <img class="poster" id="poster" alt="" src="./assets/jungle.jpg" />
+          <video
+            id="film"
+            playsinline
+            webkit-playsinline
+            muted
+            loop
+            preload="auto"
+            poster="./assets/jungle.jpg"
+          ></video>
+          <button class="play" id="play" type="button" aria-label="Play">
+            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+              <path fill="currentColor" d="M8 5.14v13.72L19 12 8 5.14z" />
+            </svg>
+          </button>
+          <span class="sheen" id="sheen" hidden></span>
         </div>
-        <div class="veil"></div>
-      </article>
+      </div>
 
-      <article class="scene" data-scene="truck" data-title="Empty" data-kicker="The truck was scenery">
-        <div class="media">
-          <img class="still" src="./assets/truck.jpg" alt="Mew above a box truck on a night dock" />
-          <video muted loop playsinline preload="none" poster="./assets/truck.jpg">
-            <source src="./assets/videos/truck.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div class="veil"></div>
-      </article>
+      <div class="transport">
+        <button class="toggle" id="toggle" type="button" aria-label="Play or pause">
+          <svg class="icon-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path fill="currentColor" d="M8 5.14v13.72L19 12 8 5.14z" />
+          </svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path fill="currentColor" d="M6 5h4v14H6zM14 5h4v14h-4z" />
+          </svg>
+        </button>
+        <input id="scrub" type="range" min="0" max="1000" value="0" aria-label="Move through the clip" />
+        <span id="time">0:00</span>
+      </div>
 
-      <article class="scene" data-scene="cell" data-title="One cell" data-kicker="Then Mewtwo">
-        <div class="media">
-          <img class="still" src="./assets/degen.jpg" alt="Mew beside a glass cylinder holding one glowing cell" />
-          <video muted loop playsinline preload="none" poster="./assets/degen.jpg">
-            <source src="./assets/videos/degen.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div class="veil"></div>
-      </article>
+      <nav class="reels" id="reels" aria-label="Clips"></nav>
+      </div>
 
-      <article class="scene" data-scene="island" data-title="Faraway" data-kicker="The island is real">
-        <div class="media">
-          <img class="still" src="./assets/faraway.jpg" alt="Mew over the sand of a small tropical island" />
-          <video muted loop playsinline preload="none" poster="./assets/faraway.jpg">
-            <source src="./assets/videos/faraway.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div class="veil"></div>
-      </article>
-
-      <article class="scene card-scene" data-scene="card" data-title="151" data-kicker="Hold the card">
-        <div class="holo" id="holo">
-          <img class="still" src="./nft/cover.jpg" alt="Fan holo card of Mew" />
-          <video muted loop playsinline preload="none" poster="./nft/cover.jpg">
-            <source src="./nft/mew.mp4" type="video/mp4" />
-          </video>
-          <span class="sheen"></span>
-        </div>
-      </article>
+      <p class="ca" id="ca" hidden>
+        <button type="button" id="ca-copy" data-copy=""></button>
+      </p>
+      <p class="fine">Fan work. Not affiliated with Nintendo, The Pokémon Company, or Game Freak.</p>
     </div>
-
-    <header>
-      <a class="mark" href="#jungle" data-go="jungle" aria-label="Mew, first scene">
-        <img src="./assets/token-logo.jpg" alt="" width="44" height="44" />
-      </a>
-      <a class="xlink" href="https://x.com/mew_on_sol" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-          <path
-            fill="currentColor"
-            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-          />
-        </svg>
-        <span>@mew_on_sol</span>
-      </a>
-    </header>
-
-    <div class="caption" id="caption">
-      <p class="kicker" id="kicker">No. 151</p>
-      <h1 id="title">Mew</h1>
-    </div>
-
-    <nav class="rail" aria-label="Scenes">
-      <button type="button" data-go="jungle" class="on" aria-label="Jungle">
-        <img src="./assets/jungle.jpg" alt="" />
-      </button>
-      <button type="button" data-go="mirage" aria-label="Mirage">
-        <img src="./assets/story.jpg" alt="" />
-      </button>
-      <button type="button" data-go="truck" aria-label="Truck">
-        <img src="./assets/truck.jpg" alt="" />
-      </button>
-      <button type="button" data-go="cell" aria-label="Laboratory">
-        <img src="./assets/degen.jpg" alt="" />
-      </button>
-      <button type="button" data-go="island" aria-label="Faraway Island">
-        <img src="./assets/faraway.jpg" alt="" />
-      </button>
-      <button type="button" data-go="card" aria-label="Holo card">
-        <img src="./nft/cover.jpg" alt="" />
-      </button>
-    </nav>
-
-    <p class="ca" id="ca" hidden>
-      <button type="button" id="ca-copy" data-copy=""></button>
-    </p>
-    <p class="fine">Fan work. Not affiliated with Nintendo, The Pokémon Company, or Game Freak.</p>
-
     <script src="./app.js"></script>
   </body>
 </html>
