@@ -3,23 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mew · No. 151</title>
-    <meta
-      name="description"
-      content="Field notes on Mew, Pokémon No. 151. Psychic. Mythical. The truck was empty."
-    />
-    <meta name="theme-color" content="#efe7dc" />
-    <meta property="og:title" content="Mew · No. 151" />
-    <meta
-      property="og:description"
-      content="Field notes on Mew. Psychic. Mythical. The truck was empty."
-    />
+    <title>Mew</title>
+    <meta name="description" content="Mew. No. 151. The truck was empty." />
+    <meta name="theme-color" content="#07060a" />
+    <meta property="og:title" content="Mew" />
+    <meta property="og:description" content="Mew. No. 151. The truck was empty." />
     <meta property="og:image" content="https://mewonsol.com/assets/og.jpg" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mewonsol.com/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@mew_on_sol" />
-    <meta name="twitter:title" content="Mew · No. 151" />
+    <meta name="twitter:title" content="Mew" />
     <meta name="twitter:image" content="https://mewonsol.com/assets/og.jpg" />
     <link rel="icon" href="./assets/favicon-32.jpg" sizes="32x32" />
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.jpg" />
@@ -27,19 +21,74 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="bar">
-      <a class="brand" href="#top">
-        <img src="./assets/token-logo.jpg" alt="" width="36" height="36" />
-        <span>Mew <small>151</small></span>
+    <div class="stage" id="stage">
+      <article class="scene on" data-scene="jungle" data-title="Mew" data-kicker="No. 151">
+        <div class="media">
+          <img class="still" src="./assets/jungle.jpg" alt="Mew above a river in a bright rainforest" />
+          <video muted loop playsinline preload="auto" poster="./assets/jungle.jpg">
+            <source src="./assets/videos/jungle.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="veil"></div>
+      </article>
+
+      <article class="scene" data-scene="mirage" data-title="Mirage" data-kicker="Seen rarely">
+        <div class="media">
+          <img class="still" src="./assets/story.jpg" alt="Mew in mist, seen by the pure of heart" />
+          <video muted loop playsinline preload="none" poster="./assets/story.jpg">
+            <source src="./assets/videos/story.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="veil"></div>
+      </article>
+
+      <article class="scene" data-scene="truck" data-title="Empty" data-kicker="The truck was scenery">
+        <div class="media">
+          <img class="still" src="./assets/truck.jpg" alt="Mew above a box truck on a night dock" />
+          <video muted loop playsinline preload="none" poster="./assets/truck.jpg">
+            <source src="./assets/videos/truck.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="veil"></div>
+      </article>
+
+      <article class="scene" data-scene="cell" data-title="One cell" data-kicker="Then Mewtwo">
+        <div class="media">
+          <img class="still" src="./assets/degen.jpg" alt="Mew beside a glass cylinder holding one glowing cell" />
+          <video muted loop playsinline preload="none" poster="./assets/degen.jpg">
+            <source src="./assets/videos/degen.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="veil"></div>
+      </article>
+
+      <article class="scene" data-scene="island" data-title="Faraway" data-kicker="The island is real">
+        <div class="media">
+          <img class="still" src="./assets/faraway.jpg" alt="Mew over the sand of a small tropical island" />
+          <video muted loop playsinline preload="none" poster="./assets/faraway.jpg">
+            <source src="./assets/videos/faraway.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="veil"></div>
+      </article>
+
+      <article class="scene card-scene" data-scene="card" data-title="151" data-kicker="Hold the card">
+        <div class="holo" id="holo">
+          <img class="still" src="./nft/cover.jpg" alt="Fan holo card of Mew" />
+          <video muted loop playsinline preload="none" poster="./nft/cover.jpg">
+            <source src="./nft/mew.mp4" type="video/mp4" />
+          </video>
+          <span class="sheen"></span>
+        </div>
+      </article>
+    </div>
+
+    <header>
+      <a class="mark" href="#jungle" data-go="jungle" aria-label="Mew, first scene">
+        <img src="./assets/token-logo.jpg" alt="" width="44" height="44" />
       </a>
-      <nav>
-        <a href="#entry">Entry</a>
-        <a href="#rumor">Truck</a>
-        <a href="#places">Places</a>
-        <a href="#moves">Moves</a>
-      </nav>
       <a class="xlink" href="https://x.com/mew_on_sol" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
           <path
             fill="currentColor"
             d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"
@@ -49,161 +98,36 @@
       </a>
     </header>
 
-    <main id="top">
-      <section class="mast">
-        <p class="kicker">National Pokédex</p>
-        <h1>Mew</h1>
-        <p class="deck">New Species Pokémon. No. 151.</p>
-      </section>
+    <div class="caption" id="caption">
+      <p class="kicker" id="kicker">No. 151</p>
+      <h1 id="title">Mew</h1>
+    </div>
 
-      <figure class="plate">
-        <div class="frame ratio-wide">
-          <img class="still" src="./assets/jungle.jpg" alt="Mew above a river in a bright rainforest" />
-          <video muted loop playsinline preload="metadata" poster="./assets/jungle.jpg">
-            <source src="./assets/videos/jungle.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <figcaption>Psychic · Mythical · 0.4 m · 4.0 kg</figcaption>
-      </figure>
+    <nav class="rail" aria-label="Scenes">
+      <button type="button" data-go="jungle" class="on" aria-label="Jungle">
+        <img src="./assets/jungle.jpg" alt="" />
+      </button>
+      <button type="button" data-go="mirage" aria-label="Mirage">
+        <img src="./assets/story.jpg" alt="" />
+      </button>
+      <button type="button" data-go="truck" aria-label="Truck">
+        <img src="./assets/truck.jpg" alt="" />
+      </button>
+      <button type="button" data-go="cell" aria-label="Laboratory">
+        <img src="./assets/degen.jpg" alt="" />
+      </button>
+      <button type="button" data-go="island" aria-label="Faraway Island">
+        <img src="./assets/faraway.jpg" alt="" />
+      </button>
+      <button type="button" data-go="card" aria-label="Holo card">
+        <img src="./nft/cover.jpg" alt="" />
+      </button>
+    </nav>
 
-      <section class="sheet" id="entry">
-        <figure class="card">
-          <div class="frame ratio-square">
-            <img class="still" src="./nft/cover.jpg" alt="Fan holo card of Mew" />
-            <video muted loop playsinline preload="metadata" poster="./nft/cover.jpg">
-              <source src="./nft/mew.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <figcaption>Fan card. Not an official print.</figcaption>
-        </figure>
-
-        <div class="entry">
-          <h2>Entry 151</h2>
-          <dl class="facts">
-            <div><dt>Species</dt><dd>New Species</dd></div>
-            <div><dt>Type</dt><dd>Psychic</dd></div>
-            <div><dt>Ability</dt><dd>Synchronize</dd></div>
-            <div><dt>Height</dt><dd>0.4 m</dd></div>
-            <div><dt>Weight</dt><dd>4.0 kg</dd></div>
-            <div><dt>Total</dt><dd>600</dd></div>
-          </dl>
-          <p>
-            The dex credits Mew as an ancestor because it can learn nearly any
-            move. It can turn invisible. Sightings are rare enough that the
-            record still calls it a mirage, and an older telling says it
-            appears only to a pure heart.
-          </p>
-          <table class="stats">
-            <caption>Base stats. Each one is 100.</caption>
-            <tbody>
-              <tr><th scope="row">HP</th><td>100</td></tr>
-              <tr><th scope="row">Attack</th><td>100</td></tr>
-              <tr><th scope="row">Defense</th><td>100</td></tr>
-              <tr><th scope="row">Sp. Atk</th><td>100</td></tr>
-              <tr><th scope="row">Sp. Def</th><td>100</td></tr>
-              <tr><th scope="row">Speed</th><td>100</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="split" id="rumor">
-        <figure>
-          <div class="frame ratio-wide">
-            <img class="still" src="./assets/truck.jpg" alt="Mew above a box truck on a night dock" />
-            <video muted loop playsinline preload="metadata" poster="./assets/truck.jpg">
-              <source src="./assets/videos/truck.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <figcaption>The dock beside the S.S. Anne.</figcaption>
-        </figure>
-        <div>
-          <h2>The truck was empty.</h2>
-          <p>
-            Players decided Mew was underneath the truck parked by the harbor.
-            The truck is scenery. Shigeki Morimoto added Mew in space that was
-            left at the end of Red and Green, and CoroCoro printed the creature
-            in May 1996.
-          </p>
-          <p>
-            For a long time the only copy was an event Pokémon, carried across
-            a link cable.
-          </p>
-        </div>
-      </section>
-
-      <section class="places" id="places">
-        <h2>Two places that hold up.</h2>
-        <div class="pair">
-          <figure>
-            <div class="frame ratio-wide">
-              <img class="still" src="./assets/degen.jpg" alt="Mew beside a glass cylinder holding one glowing cell" />
-              <video muted loop playsinline preload="metadata" poster="./assets/degen.jpg">
-                <source src="./assets/videos/degen.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <figcaption>
-              <strong>The laboratory</strong>
-              A cell from Mew was used to make Mewtwo. The clone broke the lab. Mew did not.
-            </figcaption>
-          </figure>
-          <figure>
-            <div class="frame ratio-wide">
-              <img class="still" src="./assets/faraway.jpg" alt="Mew over the sand of a small tropical island" />
-              <video muted loop playsinline preload="metadata" poster="./assets/faraway.jpg">
-                <source src="./assets/videos/faraway.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <figcaption>
-              <strong>Faraway Island</strong>
-              In Hoenn, the Old Sea Map opens a real beach. That is a place. The truck was not.
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="moves" id="moves">
-        <h2>Four moves worth knowing.</h2>
-        <dl>
-          <div>
-            <dt>Transform</dt>
-            <dd>Copies whatever it is facing.</dd>
-          </div>
-          <div>
-            <dt>Psychic</dt>
-            <dd>The type it actually is.</dd>
-          </div>
-          <div>
-            <dt>Metronome</dt>
-            <dd>Calls a move at random.</dd>
-          </div>
-          <div>
-            <dt>Teleport</dt>
-            <dd>Leaves the battle.</dd>
-          </div>
-        </dl>
-      </section>
-    </main>
-
-    <footer>
-      <a class="xlink" href="https://x.com/mew_on_sol" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-          <path
-            fill="currentColor"
-            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-          />
-        </svg>
-        @mew_on_sol
-      </a>
-      <p class="ca" id="ca" hidden>
-        <span>Contract</span>
-        <button type="button" id="ca-copy" data-copy=""></button>
-      </p>
-      <p class="fine">
-        A fan field guide. Not affiliated with Nintendo, The Pokémon Company, or
-        Game Freak.
-      </p>
-    </footer>
+    <p class="ca" id="ca" hidden>
+      <button type="button" id="ca-copy" data-copy=""></button>
+    </p>
+    <p class="fine">Fan work. Not affiliated with Nintendo, The Pokémon Company, or Game Freak.</p>
 
     <script src="./app.js"></script>
   </body>

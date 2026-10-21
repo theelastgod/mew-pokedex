@@ -1,7 +1,7 @@
 {
   "name": "Mew",
   "short_name": "Mew",
-  "description": "Field notes on Mew, Pokémon No. 151.",
+  "description": "Mew. No. 151.",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#efe7dc",
