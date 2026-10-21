@@ -1,0 +1,10 @@
+{
+  "network": "devnet",
+  "rpc": "https://api.devnet.solana.com",
+  "candyMachine": "",
+  "collection": "",
+  "treasury": "9cWnTq4V6pVs4kTazKJDyzhqy4Y7QjEiMGsbvy3TMHd5",
+  "priceSol": 0.01,
+  "supply": 1000,
+  "mintLimit": 1
+}

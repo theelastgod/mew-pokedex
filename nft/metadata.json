@@ -1,0 +1,29 @@
+{
+  "name": "Mew",
+  "symbol": "MEW",
+  "description": "A fan holo of Mew, the New Species Pokémon. Psychic. Mythical. No. 151. Said to hold the genes of every Pokémon.",
+  "image": "https://mew-pokedex.pages.dev/nft/cover.jpg",
+  "animation_url": "https://mew-pokedex.pages.dev/nft/mew.mp4",
+  "external_url": "https://mew-pokedex.pages.dev",
+  "attributes": [
+    { "trait_type": "Species", "value": "New Species" },
+    { "trait_type": "Type", "value": "Psychic" },
+    { "trait_type": "Ability", "value": "Synchronize" },
+    { "trait_type": "Number", "value": "151" },
+    { "trait_type": "Base stat total", "value": "600" }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://mew-pokedex.pages.dev/nft/cover.jpg",
+        "type": "image/jpeg"
+      },
+      {
+        "uri": "https://mew-pokedex.pages.dev/nft/mew.mp4",
+        "type": "video/mp4"
+      }
+    ],
+    "category": "video",
+    "creators": []
+  }
+}

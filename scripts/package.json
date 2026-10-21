@@ -1,0 +1,18 @@
+{
+  "name": "mew-nft-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "create": "node create-cm.mjs",
+    "bundle": "esbuild ../mint-src.js --bundle --format=esm --outfile=../mint.js --platform=browser"
+  },
+  "dependencies": {
+    "@metaplex-foundation/mpl-core": "^1.10.0",
+    "@metaplex-foundation/mpl-core-candy-machine": "^0.3.0",
+    "@metaplex-foundation/mpl-toolbox": "^0.11.4",
+    "@metaplex-foundation/umi": "^1.5.1",
+    "@metaplex-foundation/umi-bundle-defaults": "^1.5.1",
+    "@metaplex-foundation/umi-signer-wallet-adapters": "^1.5.1",
+    "esbuild": "^0.25.0"
+  }
+}

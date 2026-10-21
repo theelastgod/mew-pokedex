@@ -1,0 +1,16 @@
+{
+  "name": "Mew Field Card",
+  "symbol": "MEW",
+  "description": "A fan holo of Mew, Pokémon No. 151, the New Species Pokémon.",
+  "image": "https://mew-pokedex.pages.dev/nft/cover.jpg",
+  "external_url": "https://mew-pokedex.pages.dev",
+  "properties": {
+    "files": [
+      {
+        "uri": "https://mew-pokedex.pages.dev/nft/cover.jpg",
+        "type": "image/jpeg"
+      }
+    ],
+    "category": "image"
+  }
+}

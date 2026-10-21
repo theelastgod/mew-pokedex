@@ -1,0 +1,12 @@
+.git
+scripts
+mint-src.js
+mint.js
+compose_promos.py
+nft-cover-src.jpg
+nft-config.json
+node_modules
+copy
+promos
+README.md
+.gitignore
